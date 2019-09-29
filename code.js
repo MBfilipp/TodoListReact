@@ -25,12 +25,13 @@ class TodoList extends React.Component {
         let result = this.state.tasksArray.find(item => item.id == id);
         if(promptResult == false) return;
         result.value = promptResult;
+        this.setState({ state: 1 }); 
     }
 
     completeClick(e) {
         const id = e.target.id;
         let result = this.state.tasksArray.find(item => item.id == id);
-        result.span = true;
+        result.crossout ? result.crossout = false : result.crossout = true;
         this.setState({ state: 1 }); 
     }
 
@@ -46,13 +47,12 @@ class TodoList extends React.Component {
         const newItem = {
             value: this.state.value,
             id: this.state.tasksArray.length,
-            key: Date.now(), //Уникальный идентификатор(не id или length, потому что обновляется по мл)
+            key: Date.now(),
             crossout: false
         };
         this.setState(e => ({
             tasksArray: e.tasksArray.concat(newItem),
-            value: '',
-            crossout: false
+            value: ''
         }));
     }
 
@@ -78,20 +78,41 @@ function TodoForm(props) {
 
 class TodoTask extends React.Component {
     render() {
-        const tasks = this.props.tasks.map((currentValue) => {
-        return (
-            <li key={currentValue.key}>
-                {currentValue.span ? <s className="grey">{currentValue.value}</s> : currentValue.value}
-                <button id={currentValue.id} onClick={this.props.completeClick} className="buttonRight">Complete</button>
-                <button id={currentValue.id} onClick={this.props.editClick} className="buttonRight">Edit</button>
-            </li>   
-          );
+        const tasksNoCrossout = this.props.tasks.map((currentValue) => {
+            if(currentValue.crossout){
+                return (
+                    <li key={currentValue.key}>
+                        {currentValue.crossout ? <s className="grey">{currentValue.value}</s> : currentValue.value}
+                        <button id={currentValue.id} onClick={this.props.completeClick} className="buttonRight">Complete</button>
+                        <button id={currentValue.id} onClick={this.props.editClick} className="buttonRight">Edit</button>
+                    </li>  
+                ); 
+            }
+        });
+        const tasksCrossout = this.props.tasks.map((currentValue) => {
+            if(!currentValue.crossout){
+                return (
+                    <li key={currentValue.key}>
+                        {currentValue.crossout ? <s className="grey">{currentValue.value}</s> : currentValue.value}
+                        <button id={currentValue.id} onClick={this.props.completeClick} className="buttonRight">Complete</button>
+                        <button id={currentValue.id} onClick={this.props.editClick} className="buttonRight">Edit</button>
+                    </li>  
+                ); 
+            }
         });
       
         return (
-          <ul>
-            {tasks}
-          </ul>  
+            <div>
+                <h1>Не выполненные</h1>
+                <ul>
+                    {tasksCrossout}
+                </ul>  
+                <h1>Выполненные</h1>
+                <ul>
+                    {tasksNoCrossout}
+                </ul>   
+            </div>
+            
         );
       }
 }

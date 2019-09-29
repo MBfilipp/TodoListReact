@@ -7,10 +7,3 @@ body {
 .buttonRight {
     float: right;
 }
-ul > li > s {
-    float: left;
-}
-ul > li {
-    width: 400px;
-    height: 30px;
-}

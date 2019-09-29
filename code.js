@@ -1,7 +1,7 @@
 "use strict";
 
 function TitleName() {
-    return <h1 className="TitleName">TitleName</h1>;
+    return <h1 className="text-center">TitleName</h1>;
 }
 
 class TodoList extends React.Component {
@@ -70,8 +70,8 @@ class TodoList extends React.Component {
 function TodoForm(props) {
     return (
         <form onSubmit={props.onSubmit}>
-            <input placeholder="Введите задачу" value={props.value} onChange={props.onChange}/>
-            <input type="submit" value="Добавить задачу"/>
+            <input className="form-control" placeholder="Введите задачу" value={props.value} onChange={props.onChange}/>
+            <button type="submit" className="btn btn-primary my-2">Добавить задачу</button>
         </form>
     );
 }
@@ -81,10 +81,10 @@ class TodoTask extends React.Component {
         const tasksNoCrossout = this.props.tasks.map((currentValue) => {
             if(currentValue.crossout){
                 return (
-                    <li key={currentValue.key}>
+                    <li className="list-group-item" key={currentValue.key}>
                         {currentValue.crossout ? <s className="grey">{currentValue.value}</s> : currentValue.value}
-                        <button id={currentValue.id} onClick={this.props.completeClick} className="buttonRight">Complete</button>
-                        <button id={currentValue.id} onClick={this.props.editClick} className="buttonRight">Edit</button>
+                        <button id={currentValue.id} onClick={this.props.completeClick} className="buttonRight btn btn-success mx-2">Complete</button>
+                        <button id={currentValue.id} onClick={this.props.editClick} className="buttonRight btn btn-primary mx-2">Edit</button>
                     </li>  
                 ); 
             }
@@ -92,10 +92,10 @@ class TodoTask extends React.Component {
         const tasksCrossout = this.props.tasks.map((currentValue) => {
             if(!currentValue.crossout){
                 return (
-                    <li key={currentValue.key}>
+                    <li className="list-group-item" key={currentValue.key}>
                         {currentValue.crossout ? <s className="grey">{currentValue.value}</s> : currentValue.value}
-                        <button id={currentValue.id} onClick={this.props.completeClick} className="buttonRight">Complete</button>
-                        <button id={currentValue.id} onClick={this.props.editClick} className="buttonRight">Edit</button>
+                        <button id={currentValue.id} onClick={this.props.completeClick} className="buttonRight btn btn-success mx-2">Complete</button>
+                        <button id={currentValue.id} onClick={this.props.editClick} className="buttonRight btn btn-primary mx-2">Edit</button>
                     </li>  
                 ); 
             }
@@ -104,11 +104,11 @@ class TodoTask extends React.Component {
         return (
             <div>
                 <h1>Не выполненные</h1>
-                <ul>
+                <ul className="list-group list-group-flush">
                     {tasksCrossout}
                 </ul>  
                 <h1>Выполненные</h1>
-                <ul>
+                <ul className="list-group list-group-flush">
                     {tasksNoCrossout}
                 </ul>   
             </div>

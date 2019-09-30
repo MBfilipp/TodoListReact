@@ -1,5 +1,15 @@
 "use strict";
 
+
+function TodoForm(props) {
+    return (
+        <form onSubmit={props.onSubmit}>
+            <input className="form-control" placeholder="Введите задачу" value={props.value} onChange={props.onChange}/>
+            <button type="submit" className="btn btn-primary my-2">Добавить задачу</button>
+        </form>
+    );
+}
+
 function TitleName() {
     return <h1 className="text-center">TitleName</h1>;
 }
@@ -67,24 +77,15 @@ class TodoList extends React.Component {
     }
 }
 
-function TodoForm(props) {
-    return (
-        <form onSubmit={props.onSubmit}>
-            <input className="form-control" placeholder="Введите задачу" value={props.value} onChange={props.onChange}/>
-            <button type="submit" className="btn btn-primary my-2">Добавить задачу</button>
-        </form>
-    );
-}
-
 class TodoTask extends React.Component {
     render() {
         const tasksNoCrossout = this.props.tasks.map((currentValue) => {
             if(currentValue.crossout){
                 return (
                     <li className="list-group-item" key={currentValue.key}>
-                        {currentValue.crossout ? <s className="grey">{currentValue.value}</s> : currentValue.value}
-                        <button id={currentValue.id} onClick={this.props.completeClick} className="buttonRight btn btn-success mx-2">Complete</button>
-                        <button id={currentValue.id} onClick={this.props.editClick} className="buttonRight btn btn-primary mx-2">Edit</button>
+                        <s className="grey"><h1>{currentValue.value}</h1></s>
+                        <button id={currentValue.id} onClick={this.props.completeClick} className="buttonRight btn btn-warning mx-3 my-2">Uncomplete</button>
+                        <button id={currentValue.id} onClick={this.props.editClick} className="buttonRight btn btn-primary mx-3 my-2">Edit</button>
                     </li>  
                 ); 
             }
@@ -93,9 +94,9 @@ class TodoTask extends React.Component {
             if(!currentValue.crossout){
                 return (
                     <li className="list-group-item" key={currentValue.key}>
-                        {currentValue.crossout ? <s className="grey">{currentValue.value}</s> : currentValue.value}
-                        <button id={currentValue.id} onClick={this.props.completeClick} className="buttonRight btn btn-success mx-2">Complete</button>
-                        <button id={currentValue.id} onClick={this.props.editClick} className="buttonRight btn btn-primary mx-2">Edit</button>
+                        <h1>{currentValue.value}</h1>
+                        <button id={currentValue.id} onClick={this.props.completeClick} className="buttonRight btn btn-success mx-3 my-2">Complete</button>
+                        <button id={currentValue.id} onClick={this.props.editClick} className="buttonRight btn btn-primary mx-3 my-2">Edit</button>
                     </li>  
                 ); 
             }

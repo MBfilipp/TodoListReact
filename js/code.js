@@ -1,8 +1,5 @@
 "use strict";
 
-import React from "react";
-import ReactDOM from "react-dom";
-
 function TodoForm(props) {
     return (
         <form onSubmit={props.onSubmit}>

@@ -1,5 +1,3 @@
-"use strict";
-
 
 function TodoForm(props) {
     return (

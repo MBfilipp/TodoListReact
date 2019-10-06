@@ -30,18 +30,20 @@ class TodoList extends React.Component {
 
     editClick(e) {
         const id = e.target.id;
+        let copyObj = Object.assign([], this.state.tasksArray);
         const promptResult = prompt("Edit text", '');
-        let result = this.state.tasksArray.find(item => item.id == id);
+        let result = this.state.tasksArray.findIndex(item => item.id == id);
         if(promptResult == false) return;
-        result.value = promptResult;
-        this.setState({ state: 1 }); 
+        copyObj[result].value = promptResult;
+        this.setState({ tasksArray: copyObj });
     }
 
     completeClick(e) {
-        const id = e.target.id;
-        let result = this.state.tasksArray.find(item => item.id == id);
-        result.crossout ? result.crossout = false : result.crossout = true;
-        this.setState({ state: 1 }); 
+        const id = e.target.id;  
+        let copyObj = Object.assign([], this.state.tasksArray);
+        let result = this.state.tasksArray.findIndex(item => item.id == id);
+        copyObj[result].crossout = !copyObj[result].crossout;
+        this.setState({ tasksArray: copyObj }); 
     }
 
     onChange(e) {

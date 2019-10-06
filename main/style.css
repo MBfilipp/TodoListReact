@@ -1,7 +1,7 @@
 .buttonRight {
-    float: right;
+  float: right;
 }
 .list-group-item > h1,
 .list-group-item > s > h1 {
-    float: left;
+  float: left;
 }

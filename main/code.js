@@ -69,11 +69,11 @@ class TodoList extends React.Component {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <TitleName/>
                 <TodoForm onSubmit={this.onSubmit} value={this.state.value} onChange={this.onChange}/>
                 <TodoTask tasks={this.state.tasksArray} completeClick={this.completeClick} editClick={this.editClick}/>  
-            </div>          
+            </React.Fragment>          
         );
     }
 }

@@ -44,6 +44,7 @@ class TodoList extends React.Component {
         let result = this.state.tasksArray.findIndex(item => item.id == id);
         copyObj[result].crossout = !copyObj[result].crossout;
         this.setState({ tasksArray: copyObj }); 
+        console.log(this.state.tasksArray);
     }
 
     onChange(e) {
@@ -84,7 +85,7 @@ class TodoTask extends React.Component {
             if(currentValue.crossout){
                 return (
                     <li className="list-group-item" key={currentValue.key}>
-                        <s className="grey"><h1>{currentValue.value}</h1></s>
+                        <h1><s className="grey">{currentValue.value}</s></h1>
                         <button id={currentValue.id} onClick={this.props.completeClick} className="buttonRight btn btn-warning mx-3 my-2">Uncomplete</button>
                         <button id={currentValue.id} onClick={this.props.editClick} className="buttonRight btn btn-primary mx-3 my-2">Edit</button>
                     </li>  
@@ -105,11 +106,11 @@ class TodoTask extends React.Component {
       
         return (
             <div>
-                <h1>Не выполненные</h1>
+                <h1 className="text-center">Не выполненные</h1>
                 <ul className="list-group list-group-flush">
                     {tasksCrossout}
                 </ul>  
-                <h1>Выполненные</h1>
+                <h1 className="text-center">Выполненные</h1>
                 <ul className="list-group list-group-flush">
                     {tasksNoCrossout}
                 </ul>   

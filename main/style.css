@@ -5,3 +5,6 @@
 .list-group-item > s > h1 {
   float: left;
 }
+.grey {
+  color: grey;
+}

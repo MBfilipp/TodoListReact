@@ -10,7 +10,7 @@ function TodoForm(props) {
 }
 
 function TitleName() {
-    return <h1 className="text-center">TitleName</h1>;
+    return <h1 className="text-center">Todo List App</h1>;
 }
 
 class TodoList extends React.Component {

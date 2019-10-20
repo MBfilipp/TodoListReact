@@ -44,7 +44,6 @@ class TodoList extends React.Component {
         let result = this.state.tasksArray.findIndex(item => item.id == id);
         copyObj[result].crossout = !copyObj[result].crossout;
         this.setState({ tasksArray: copyObj }); 
-        console.log(this.state.tasksArray);
     }
 
     onChange(e) {

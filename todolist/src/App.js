@@ -32,7 +32,6 @@ class App extends React.Component {
       const id = e.target.id;  
       let copyObj = Object.assign([], this.state.tasksArray);
       let result = copyObj.findIndex(item => `${item.id === id}`);
-      console.log(copyObj)
       copyObj[result].crossout = !copyObj[result].crossout;
       this.setState({ tasksArray: copyObj }); 
   }

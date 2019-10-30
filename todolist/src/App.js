@@ -22,7 +22,7 @@ class App extends React.Component {
       const id = e.target.id;
       let copyObj = Object.assign([], this.state.tasksArray);
       const promptResult = prompt("Edit text", '');
-      let result = this.state.tasksArray.findIndex(item => `${item.id === id}`);
+      let result = this.state.tasksArray.findIndex(item => item.id == id);
       if(!promptResult) return;
       copyObj[result].value = promptResult;
       this.setState({ tasksArray: copyObj });
@@ -31,7 +31,7 @@ class App extends React.Component {
   completeClick(e) {
       const id = e.target.id;  
       let copyObj = Object.assign([], this.state.tasksArray);
-      let result = copyObj.findIndex(item => `${item.id === id}`);
+      let result = copyObj.findIndex(item => item.id == id);
       copyObj[result].crossout = !copyObj[result].crossout;
       this.setState({ tasksArray: copyObj }); 
   }

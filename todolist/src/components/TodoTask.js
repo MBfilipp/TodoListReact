@@ -9,7 +9,7 @@ export default class TodoTask extends React.Component {
                 return (
                     <Li key={currentValue.key} keyLi={currentValue.key} id={currentValue.id}>
                         <H1 state={currentValue.crossout} text={currentValue.value}/>
-                        <Button state={currentValue.crossout} id={currentValue.id} onClick={this.props.completeClick}/>
+                        <Button state={currentValue.crossout} id={currentValue.id} onClick={this.props.completeClick} editClick={this.props.editClick}/>
                     </Li>
                 ); 
         });

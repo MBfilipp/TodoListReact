@@ -19,21 +19,21 @@ class App extends React.Component {
   }
 
   editClick(e) {
-      const id = e.target.id;
-      let copyObj = Object.assign([], this.state.tasksArray);
+      const id = Number(e.target.id);
+      let copyTasksArray = Object.assign([], this.state.tasksArray);
       const promptResult = prompt("Edit text", '');
-      let result = this.state.tasksArray.findIndex(item => item.id == id);
+      let findID = this.state.tasksArray.findIndex(item => item.id === id);
       if(!promptResult) return;
-      copyObj[result].value = promptResult;
-      this.setState({ tasksArray: copyObj });
+      copyTasksArray[findID].value = promptResult;
+      this.setState({ tasksArray: copyTasksArray });
   }
 
   completeClick(e) {
-      const id = e.target.id;  
-      let copyObj = Object.assign([], this.state.tasksArray);
-      let result = copyObj.findIndex(item => item.id == id);
-      copyObj[result].crossout = !copyObj[result].crossout;
-      this.setState({ tasksArray: copyObj }); 
+      const id = Number(e.target.id);  
+      let copyTasksArray = Object.assign([], this.state.tasksArray);
+      let findID = copyTasksArray.findIndex(item => item.id === id);
+      copyTasksArray[findID].crossout = !copyTasksArray[findID].crossout;
+      this.setState({ tasksArray: copyTasksArray }); 
   }
 
   onChange(e) {
@@ -51,8 +51,8 @@ class App extends React.Component {
           key: Date.now(),
           crossout: false
       };
-      this.setState(e => ({
-          tasksArray: e.tasksArray.concat(newItem),
+      this.setState(state => ({
+          tasksArray: state.tasksArray.concat(newItem),
           value: ''
       }));
   }
